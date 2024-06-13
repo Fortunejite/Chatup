@@ -1,0 +1,24 @@
+:root {
+  --bg: #F1FAFF;
+  --primary: white;
+  --secondary: #A9DEF9;
+  --heading: #FF5A60;
+  --text: #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  min-height: 100vh;
+}
+
+.truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

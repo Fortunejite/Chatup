@@ -1,0 +1,17 @@
+.container {
+  background-color: white;
+  padding: .5rem;
+  width: 55px;
+  height: 55px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  top: 0;
+}

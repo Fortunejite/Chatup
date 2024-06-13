@@ -1,0 +1,123 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  height: 100%;
+  width: 100%;
+  padding: 0 64px;
+  border-radius: 15px;
+  background-color: var(--primary);
+}
+
+.headings{
+  color: var(--text);
+  margin-top: 64px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.headings_signup {
+  margin-top: 8px;
+}
+
+.fields {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.oauths {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.oauths button {
+  display: block;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  box-shadow: 0px 30px 50px -25px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 30px 50px -25px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 30px 50px -25px rgba(0,0,0,0.75);
+}
+
+.oauths button img{
+  margin-right: 20px;
+}
+
+.hr {
+  margin: 8px 0;
+  border: 1px solid black;
+  opacity: .5;
+}
+
+.field {
+  background-color: #ECECEC;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  margin: 8px 0;
+}
+
+.field input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+.field input:first-child::first-letter{
+  content: "@";
+}
+
+.field input:active, .field input:focus{
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.names {
+  display: flex;
+  gap: 8px;
+}
+
+.submit{
+  background-color: var(--secondary);
+  color: var(--text);
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.switch {
+  display: block;
+  text-align: center;
+}
+
+.switch button {
+  background-color: transparent;
+  border: none;
+  color: var(--heading);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .container{
+    padding: 16px;
+    height: auto;
+  }
+}

@@ -1,0 +1,11 @@
+.container{
+  background-color: var(--bg);
+  max-width: 315px;
+  flex: 1;
+}
+
+@media screen and (max-width: 500px) {
+  .container{
+    display: none;
+  }
+}

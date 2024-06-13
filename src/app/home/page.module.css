@@ -1,0 +1,138 @@
+.container {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 135px);
+}
+
+.main {
+  padding: 20px;
+  flex: 2;
+}
+
+.main section {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.upload {
+  margin-top: 40px;
+  padding: 24px;
+  background-color: var(--primary);
+}
+
+.upload__top{
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid grey;
+}
+
+.upload__top button {
+  font-weight: 500;
+  background-color: transparent;
+  display: flex;
+  border: none;
+  align-items: center;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.upload__top button input{
+  display: none;
+  cursor: pointer;
+}
+
+.upload__top .imgContainer {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  background-color: #FFEE93;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.upload__top .imgContainer .img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.searchArea {
+  display: flex;
+  border: none;
+  position: relative;
+  height: 80px;
+}
+
+.searchArea textarea{
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: var(--bg);
+  padding-left: 40px;
+  padding-top: 16px;
+  text-align: start;
+  resize: none;
+}
+
+.searchArea input:focus{
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.searchArea input::placeholder{
+  letter-spacing: .01rem;
+}
+
+.write {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  
+}
+
+.attachment {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}
+
+.attachment img{
+  border: 1px solid black;
+  object-fit: fill;
+}
+
+.attachmentItem{
+  position: relative;
+}
+
+.attachmentItem button{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.posts {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 16px;
+}
+
+@media screen and (max-width: 500px) {
+  .container{
+    display: block;
+  }
+
+  .main {
+    padding: 0 8px;
+    display: flex;
+    flex-flow: column wrap;
+  }
+}

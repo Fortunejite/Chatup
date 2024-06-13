@@ -1,0 +1,71 @@
+.container {
+  background-color: var(--primary);
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.avater {
+  margin-right: 8px;
+}
+
+.names {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+}
+
+.names .h3{
+  margin-right: 24px;
+}
+
+.names p{
+  opacity: .5;
+}
+
+.body{
+  padding-left: 78px;
+}
+
+.media {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}
+
+.media img{
+  object-fit: scale-down;
+}
+
+.item {
+  flex: 1;
+  min-width: 48%;
+  height: calc(width);
+}
+
+.bottom {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.bottom button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom button svg {
+  margin-right: 8px;
+  cursor: pointer;
+  color: #ff0000
+}

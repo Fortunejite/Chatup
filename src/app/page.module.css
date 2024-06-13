@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--bg);
+  padding: 20px 40px 20px 100px;
+}
+
+.img {
+  width: 40%;
+  height: auto;
+  margin-right: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+  .container{
+    padding: 20px;
+  }
+  .img {
+    display: none;
+  }
+}
+
+/* @media screen and (max-width: 500px) {
+  .container{
+    padding: 16px;
+  }
+  .img {
+    display: none;
+  }
+} */
