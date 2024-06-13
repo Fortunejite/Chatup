@@ -89,8 +89,8 @@ const Profile = ({ userSession, user, posts }: Props) => {
       return setIsEditMode(false);
     } else {
       toast.dismiss(toaster);
-      toast.error('Error updating profile');
-      toast(JSON.stringify(res));
+      const {msg} = await res.json()
+      toast(msg);
       setIsLoading(false);
       return;
     }
