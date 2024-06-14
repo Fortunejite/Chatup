@@ -13,8 +13,8 @@ interface Props {
 
 const Post = ({ data, author, userId }: Props) => {
   const date = data.date;
-  const currentDate = new Date()
-  const formatdate = dateFormat(date, currentDate)
+  const currentDate = new Date();
+  const formatdate = dateFormat(date, currentDate);
   const name = `${author.firstName} ${author.lastName}`;
 
   const [isLiked, setIsliked] = useState(data.likes.data.includes(userId));

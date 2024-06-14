@@ -1,14 +1,12 @@
-"use client"
+'use client';
 
-import { SessionProvider } from "next-auth/react"
-const AuthProivider = ({children}: Readonly<{
+import { SessionProvider } from 'next-auth/react';
+const AuthProivider = ({
+  children,
+}: Readonly<{
   children: React.ReactNode;
 }>) => {
-  return (
-    <SessionProvider>
-      {children}
-    </SessionProvider>
-  )
-}
+  return <SessionProvider>{children}</SessionProvider>;
+};
 
-export default AuthProivider
+export default AuthProivider;

@@ -1,16 +1,15 @@
-import { uploadFile } from "@/lib/firebase"
-import { NextResponse } from "next/server";
+import { uploadFile } from '@/lib/firebase';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
-  const images = await request.formData() as unknown as File[]
-  
-  
-  let imagesUrlPromise: Promise<string>[] = []
+  const images = (await request.formData()) as unknown as File[];
+
+  let imagesUrlPromise: Promise<string>[] = [];
   images?.forEach(async (image) => {
     const url = uploadFile({ file: image, path: 'user/images' });
     imagesUrlPromise.push(url);
-  })
-  const imagesUrl = await Promise.all(imagesUrlPromise)
-  
-  return NextResponse.json({url: imagesUrl[0]})
+  });
+  const imagesUrl = await Promise.all(imagesUrlPromise);
+
+  return NextResponse.json({ url: imagesUrl[0] });
 }
