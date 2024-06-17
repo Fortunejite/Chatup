@@ -3,6 +3,7 @@ import styles from './navbar.module.css';
 import Links from './Links/links';
 import { auth, signIn } from '@/auth';
 import Link from 'next/link';
+import Button from './button';
 
 interface link {
   id: number;
@@ -41,30 +42,33 @@ const Navbar = async () => {
   }
   return (
     <nav className={styles.container}>
-      <Link href='/home'>
-        <Image
-          src='/icons/logo.png'
-          alt='Logo'
-          height={54}
-          width={55}
-          className={styles.logo}
-        />
-      </Link>
-      <div className={styles.searchArea}>
-        <Image
-          src='/icons/search-normal.png'
-          alt='search'
-          height={24}
-          width={24}
-          className={styles.search}
-        />
-        <input type='text' placeholder='Search for friends here ...' />
-      </div>
-      <div className={styles.profile}>
-        <Image src={user.pic} height={58} width={58} alt='avater' />
-        <div>
-          <h3>{`${user.firstName} ${user.lastName}`}</h3>
-          <p>@{user.username}</p>
+      <div className={styles.top}>
+        <Link href='/home'>
+          <Image
+            src='/icons/logo.png'
+            alt='Logo'
+            height={54}
+            width={55}
+            className={styles.logo}
+          />
+        </Link>
+        {/* <button>Drawer</button> */}
+        <div className={styles.searchArea}>
+          <Image
+            src='/icons/search-normal.png'
+            alt='search'
+            height={24}
+            width={24}
+            className={styles.search}
+          />
+          <input type='text' placeholder='Search for friends here ...' />
+        </div>
+        <div className={styles.profile}>
+          <Image src={user.pic} height={58} width={58} alt='avater' />
+          <div>
+            <h3>{`${user.firstName} ${user.lastName}`}</h3>
+            <p>@{user.username}</p>
+          </div>
         </div>
       </div>
       <div className={styles.options}>
@@ -77,6 +81,7 @@ const Navbar = async () => {
             key={link.id}
           />
         ))}
+        <Button />
       </div>
     </nav>
   );

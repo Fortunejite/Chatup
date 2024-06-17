@@ -5,6 +5,7 @@ import Post from '@/components/Posts/Post/Post';
 import { ChangeEvent, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { signOut } from 'next-auth/react';
+import { formatNumber } from '@/lib/data';
 
 interface Props {
   userSession: User;
@@ -186,11 +187,11 @@ const Profile = ({ userSession, user, posts }: Props) => {
       <section className={styles.follows}>
         <div>
           <h3>Followers</h3>
-          <p>{user.followers.length}</p>
+          <p>{formatNumber(user.followers.length)}</p>
         </div>
         <div>
           <h3>Following</h3>
-          <p>{user.following.length}</p>
+          <p>{formatNumber(user.following.length)}</p>
         </div>
       </section>
       {user.friendRequest.length > 0 && (
@@ -204,7 +205,7 @@ const Profile = ({ userSession, user, posts }: Props) => {
           posts.map((post) => (
             <Post
               key={post._id}
-              author={userSession}
+              author={userSession as unknown as Author}
               data={post}
               userId={userSession.id}
             />

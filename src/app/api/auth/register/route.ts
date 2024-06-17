@@ -65,5 +65,6 @@ export async function POST(request: Request) {
     if (e instanceof ZodError) {
       return NextResponse.json({ msg: e.issues[0].message }, { status: 409 });
     }
+    return NextResponse.json({msg: e}, {status: 409})
   }
 }

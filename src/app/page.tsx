@@ -1,8 +1,12 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import Form from '@/components/Form/Form';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth()
+  if (session) redirect("/home")
   return (
     <div className={styles.container}>
       <Image

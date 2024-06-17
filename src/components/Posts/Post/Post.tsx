@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import styles from './page.module.css';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
-import { Days, Months, dateFormat } from '@/lib/data';
+import { useRouter } from 'next/navigation';
+import { dateFormat, formatNumber } from '@/lib/data';
 
 interface Props {
   data: Post;
@@ -16,8 +16,34 @@ const Post = ({ data, author, userId }: Props) => {
   const currentDate = new Date();
   const formatdate = dateFormat(date, currentDate);
   const name = `${author.firstName} ${author.lastName}`;
+  const router = useRouter();
 
   const [isLiked, setIsliked] = useState(data.likes.data.includes(userId));
+  const [likesCount, setLikesCount] = useState(data.likes.count);
+  const toggleLike = async () => {
+    setIsliked(!isLiked);
+    if (isLiked) {
+      setLikesCount((prev) => prev - 1);
+      const res = await fetch(`/api/post/${data._id}/like`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId }),
+      });
+      if (!res.ok) setIsliked(!isLiked);
+    } else {
+      setLikesCount((prev) => prev + 1);
+      const res = await fetch(`/api/post/${data._id}/like`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId }),
+      });
+      if (!res.ok) setIsliked(!isLiked);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -28,6 +54,9 @@ const Post = ({ data, author, userId }: Props) => {
           width={70}
           height={70}
           className={styles.avater}
+          onClick={()=>{
+            router.push(`home/profile/${author.username}`);
+          }}
         />
         <div>
           <div className={styles.names}>
@@ -78,6 +107,7 @@ const Post = ({ data, author, userId }: Props) => {
             height='30'
             viewBox='0 0 400 400'
             fill={isLiked ? '#ff0000' : 'none'}
+            onClick={toggleLike}
             xmlns='http://www.w3.org/2000/svg'
           >
             <path
@@ -89,7 +119,7 @@ const Post = ({ data, author, userId }: Props) => {
               strokeLinejoin='round'
             />
           </svg>
-          <span>{data.likes.count > 0 && data.likes.count}</span>
+          <span>{likesCount > 0 && formatNumber(likesCount)}</span>
         </button>
         <button>
           <Image

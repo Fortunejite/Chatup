@@ -8,6 +8,7 @@
   flex-flow: row wrap;
   align-items: center;
   margin-bottom: 16px;
+  cursor: pointer;
 }
 
 .avater {
@@ -16,7 +17,8 @@
 
 .names {
   display: flex;
-  flex-flow: row nowrap;
+  align-items: center;
+  flex-flow: row wrap;
   gap: 8px;
 }
 
@@ -35,6 +37,7 @@
 .media {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -68,4 +71,16 @@
   margin-right: 8px;
   cursor: pointer;
   color: #ff0000
+}
+
+@media screen and (max-width: 500px) {
+  .avater {
+    /* margin-right: 4px; */
+    height: 50px;
+    width: 50px;
+  }
+
+  .body{
+    padding-left: 58px;
+  }
 }
