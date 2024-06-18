@@ -22,7 +22,6 @@ const Profile = ({ userSession, user, posts }: Props) => {
   const [email, setEmail] = useState(userSession.email);
   const [bio, setBio] = useState(user.bio);
   const [isLoading, setIsLoading] = useState(false);
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [imgFile, setImgFile] = useState<File | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -37,7 +36,6 @@ const Profile = ({ userSession, user, posts }: Props) => {
   };
 
   const handleChangePic = () => {
-    setIsButtonClicked((prev) => !prev);
     inputRef.current?.click();
   };
   const handleEditSaveClick = async () => {
@@ -198,9 +196,20 @@ const Profile = ({ userSession, user, posts }: Props) => {
         <section className={styles.friendRequests}></section>
       )}
       {user.friends.length > 0 && (
-        <section className={styles.friends}></section>
+        <section className={styles.friends}>
+          <h3>Friends</h3>
+          {/* <div className={styles.friendList}>
+            {user.friends.map((friend) => (
+              <div key={friend._id}>
+                <Image src={friend.pic} alt='Friend' width={50} height={50} />
+                <h4>{`${friend.firstName} ${friend.lastName}`}</h4>
+              </div>
+            ))}
+          </div> */}
+        </section>
       )}
       <section className={styles.posts}>
+      <h1>Posts</h1>
         {posts.length > 0 ? (
           posts.map((post) => (
             <Post

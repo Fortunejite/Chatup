@@ -56,7 +56,7 @@ const Drawer = () => {
     {isOpen && <aside className={styles.container}>
         <section className={styles.hero}>
           <Image src={user.pic} alt='Logo' width={100} height={100} />
-          <h1>{`${user.firstName} ${user.lastName}`}</h1>
+          <h1 className='truncate'>{`${user.firstName} ${user.lastName}`}</h1>
         </section>
         <section className={styles.panel}>
           <h3>Explore panel</h3>

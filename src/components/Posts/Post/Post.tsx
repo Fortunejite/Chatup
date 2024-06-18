@@ -14,7 +14,7 @@ interface Props {
 const Post = ({ data, author, userId }: Props) => {
   const date = data.date;
   const currentDate = new Date();
-  const formatdate = dateFormat(date, currentDate);
+  const formatdate = date ? dateFormat(date, currentDate) : '';
   const name = `${author.firstName} ${author.lastName}`;
   const router = useRouter();
 
@@ -60,8 +60,8 @@ const Post = ({ data, author, userId }: Props) => {
         />
         <div>
           <div className={styles.names}>
-            <h3>{name}</h3>
-            <p>@{author.username}</p>
+            <h3 className='truncate'>{name}</h3>
+            <p className='truncate'>@{author.username}</p>
           </div>
           <p>{formatdate}</p>
         </div>
@@ -101,7 +101,6 @@ const Post = ({ data, author, userId }: Props) => {
       </div>
       <div className={styles.bottom}>
         <button>
-          {/* <Image src="/icons/like.png" alt="like" width={30} height={30} /> */}
           <svg
             width='30'
             height='30'

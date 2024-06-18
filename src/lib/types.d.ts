@@ -30,7 +30,7 @@ interface Author {
 interface Post {
   _id: string,
   userId: string,
-  author: User,
+  author: Author,
   date: Date,
   text: string,
   images: string[],

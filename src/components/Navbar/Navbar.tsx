@@ -66,8 +66,12 @@ const Navbar = async () => {
         <div className={styles.profile}>
           <Image src={user.pic} height={58} width={58} alt='avater' />
           <div>
-            <h3>{`${user.firstName} ${user.lastName}`}</h3>
-            <p>@{user.username}</p>
+            <h3
+              className='truncate'
+            >{`${user.firstName} ${user.lastName}`}</h3>
+            <p className='truncate'>
+              @{user.username}
+            </p>
           </div>
         </div>
       </div>
