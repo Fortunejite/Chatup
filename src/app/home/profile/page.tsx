@@ -10,18 +10,12 @@ const Page = async () => {
   const session = await auth();
   if (!session) return signIn();
   const userSession = session?.user as User;
-  const { users, posts: PostCollection } = await Setup();
-  const page = 1;
-  const skip = (page - 1) * 10;
+  const { users,} = await Setup();
   const user = (await users?.findOne({
     _id: new ObjectId(userSession.id),
   })) as unknown as UserPlus;
-  const posts = (await PostCollection?.find({ userId: userSession.id })
-    .skip(skip)
-    .limit(10)
-    .toArray()) as unknown as Post[];
   if (!user) return signIn();
-  return <Profile userSession={userSession} user={user} posts={posts} />;
+  return <Profile userSession={userSession} user={user}  />;
 };
 
 export default Page;

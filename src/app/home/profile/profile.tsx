@@ -6,14 +6,17 @@ import { ChangeEvent, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { signOut } from 'next-auth/react';
 import { formatNumber } from '@/lib/data';
+import InfiniteScroll from '@/components/InfiniteScroll/page';
+import { fetchUserPosts } from '@/lib/fetchPosts';
 
 interface Props {
   userSession: User;
   user: UserPlus;
-  posts: Post[];
 }
 
-const Profile = ({ userSession, user, posts }: Props) => {
+const Profile = ({ userSession, user }: Props) => {
+  const [posts, setPosts] = useState<Post[]>([])
+  const [isData, setIsData] = useState(true)
   const [isEditMode, setIsEditMode] = useState(false);
   const [imageSrc, setImageSrc] = useState(userSession.pic);
   const [username, setUsername] = useState(userSession.username);
@@ -210,18 +213,21 @@ const Profile = ({ userSession, user, posts }: Props) => {
       )}
       <section className={styles.posts}>
       <h1>Posts</h1>
-        {posts.length > 0 ? (
-          posts.map((post) => (
-            <Post
-              key={post._id}
-              author={userSession as unknown as Author}
-              data={post}
-              userId={userSession.id}
-            />
-          ))
-        ) : (
-          <h1>No posts yet</h1>
-        )}
+      
+      <InfiniteScroll limit={10} data={posts} setData={setPosts} setIsData={setIsData} fetchCallback={fetchUserPosts} route={`/api/user/post/${userSession.id}`}>
+        {isData ? (
+            posts.map((post) => (
+              <Post
+                key={post._id}
+                author={userSession as unknown as Author}
+                data={post}
+                userId={userSession.id}
+              />
+            ))
+          ) : (
+            <h1>No posts yet</h1>
+          )}
+      </InfiniteScroll>
       </section>
     </div>
   );

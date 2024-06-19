@@ -3,6 +3,9 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 import Post from '@/components/Posts/Post/Post';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+import InfiniteScroll from '@/components/InfiniteScroll/page';
+import { fetchUserPosts } from '@/lib/fetchPosts';
 
 interface Props {
   user: {
@@ -15,11 +18,12 @@ interface Props {
     followers: string[];
     following: string[];
   };
-  posts: Post[];
   userId: string;
 }
 
-const Profile = ({  user, posts, userId }: Props) => {
+const Profile = ({  user, userId }: Props) => {
+  const [posts, setPosts] = useState<Post[]>([])
+  const [isData, setIsData] = useState(true)
   const img = user.avatar || '/icons/profile.png';
   return (
     <div className={styles.container}>
@@ -51,7 +55,8 @@ const Profile = ({  user, posts, userId }: Props) => {
         </div>
       </section>
       <section className={styles.posts}>
-        {posts.length > 0 ? (
+      <InfiniteScroll limit={10} data={posts} setData={setPosts} setIsData={setIsData} fetchCallback={fetchUserPosts} route={`/api/user/post/${userId}`}>
+        {isData ? (
           posts.map((post) => (
             <Post
               key={post._id}
@@ -63,6 +68,7 @@ const Profile = ({  user, posts, userId }: Props) => {
         ) : (
           <h1>No posts yet</h1>
         )}
+        </InfiniteScroll>
       </section>
     </div>
   );

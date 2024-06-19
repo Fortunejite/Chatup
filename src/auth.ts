@@ -47,7 +47,7 @@ const option: NextAuthConfig = {
           _id: user._id,
           email: user.email,
           username: user.username,
-          pic: user.avater || '/icons/profile.png',
+          pic: user.avatar || '/icons/profile.png',
           firstName: user.firstName,
           lastName: user.lastName,
         };
