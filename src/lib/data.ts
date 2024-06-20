@@ -15,27 +15,48 @@ export const Months = [
 
 export const Days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-export const dateFormat = (date: Date, newDate: Date) => {
-  let newDateFormat;
-  if (newDate.getFullYear() !== date.getFullYear())
-    newDateFormat = `${
-      Months[date.getMonth()]
-    } ${newDate.getDate()}, ${newDate.getFullYear()}`;
-  else if (newDate.getMonth() !== date.getMonth())
-    newDateFormat = `${
-      Months[date.getMonth()]
-    } ${newDate.getDate()}, ${newDate.getFullYear()}`;
-  else if (newDate.getDay() - date.getDay() > 7)
-    newDateFormat = `${
-      Months[date.getMonth()]
-    } ${newDate.getDate()}, ${newDate.getFullYear()}`;
-  else {
-    const isAm = date.getHours() < 12 ? 'AM' : 'PM';
-    newDateFormat = `${Days[date.getDay()]} ${
-      isAm === 'AM' ? date.getHours() : date.getHours() - 12
-    }:${date.getMinutes()} ${isAm}`;
+export const dateFormat = (date: Date, newDate: Date): string => {
+  const millisecondsPerDay = 24 * 60 * 60 * 1000;
+  const diffInDays = Math.round(Math.abs((newDate.getTime() - date.getTime()) / millisecondsPerDay));
+
+  if (isToday(date, newDate)) {
+    const isAM = date.getHours() < 12 ? 'AM' : 'PM';
+    const hours = date.getHours() % 12 || 12; // Convert 0 hours to 12 AM
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `Today ${hours}:${minutes} ${isAM}`;
+  } else if (isYesterday(date, newDate)) {
+    const isAM = date.getHours() < 12 ? 'AM' : 'PM';
+    const hours = date.getHours() % 12 || 12; // Convert 0 hours to 12 AM
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `Yesterday ${hours}:${minutes} ${isAM}`;
+  } else if (diffInDays <= 7) {
+    const dayOfWeek = Days[date.getDay()];
+    const isAM = date.getHours() < 12 ? 'AM' : 'PM';
+    const hours = date.getHours() % 12 || 12; // Convert 0 hours to 12 AM
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${dayOfWeek} ${hours}:${minutes} ${isAM}`;
+  } else {
+    return `${Months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   }
-  return newDateFormat;
+};
+
+// Helper function to check if two dates are the same day
+const isSameDay = (date1: Date, date2: Date): boolean => {
+  return date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate();
+};
+
+// Helper function to check if the given date is today
+const isToday = (date: Date, newDate: Date): boolean => {
+  return isSameDay(date, newDate);
+};
+
+// Helper function to check if the given date is yesterday
+const isYesterday = (date: Date, newDate: Date): boolean => {
+  const yesterday = new Date(newDate);
+  yesterday.setDate(newDate.getDate() - 1);
+  return isSameDay(date, yesterday);
 };
 
 export const formatNumber = (number: number) => {

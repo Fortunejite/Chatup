@@ -59,6 +59,12 @@
   opacity: .5;
 }
 
+.formSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .field {
   background-color: #ECECEC;
   padding: 0 8px;

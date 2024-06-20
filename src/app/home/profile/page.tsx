@@ -14,6 +14,7 @@ const Page = async () => {
   const user = (await users?.findOne({
     _id: new ObjectId(userSession.id),
   })) as unknown as UserPlus;
+  
   if (!user) return signIn();
   return <Profile userSession={userSession} user={user}  />;
 };

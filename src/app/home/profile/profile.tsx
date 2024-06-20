@@ -166,8 +166,8 @@ const Profile = ({ userSession, user }: Props) => {
 
       <section className={styles.email}>
         <h3>Email: </h3>
-        {!isEditMode && <p>{user.email}</p>}
-        {isEditMode && (
+        {(!isEditMode || user.provider) && <p>{user.email}</p>}
+        {(isEditMode && !user.provider) && (
           <input
             type='email'
             value={email}

@@ -4,6 +4,7 @@ import { FormEvent, useState } from 'react';
 import styles from './Form.module.css';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const Form = () => {
   const [username, setUsername] = useState('');
@@ -13,6 +14,7 @@ const Form = () => {
   const [lastName, setLastName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const router = useRouter()
 
   const handleSignUp = async () => {
     setIsLoading(true);
@@ -69,8 +71,16 @@ const Form = () => {
       setIsLoading(false);
       return;
     }
-    signIn('credentials', { username, password, callbackUrl: '/home' });
-
+    const res = await signIn('credentials', { username, password, redirect: false });
+    if (res?.error) {
+      console.log(res);
+      
+      toast('Invalid login Credential');
+      setIsLoading(false);
+      return;
+    }
+    
+    router.push('/home')
     setIsLoading((prev) => !prev);
   };
 
@@ -83,7 +93,7 @@ const Form = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className={styles.container}>
+    <div className={styles.container}>
       {isSignup ? (
         <h1 className={`${styles.headings} ${styles.headings_signup}`}>
           Get Started
@@ -93,52 +103,29 @@ const Form = () => {
       )}
       <div className={styles.fields}>
         <div className={styles.oauths}>
-          {!isSignup && (
-            <button onClick={() => signIn('google')}>
-              <Image
-                src='/icons/google.png'
-                alt='Google'
-                height={24}
-                width={24}
-              />
-              <span>Login with Google</span>
-            </button>
-          )}
-          {!isSignup && (
-            <button>
-              <Image
-                src='/icons/facebook.png'
-                alt='Google'
-                height={24}
-                width={16}
-              />
-              <span>Login with facebook</span>
-            </button>
-          )}
-          {isSignup && (
-            <button>
-              <Image
-                src='/icons/google.png'
-                alt='Google'
-                height={24}
-                width={24}
-              />
-              <span>Signup with Google</span>
-            </button>
-          )}
-          {isSignup && (
-            <button>
-              <Image
-                src='/icons/facebook.png'
-                alt='Google'
-                height={24}
-                width={16}
-              />
-              <span>Signup with facebook</span>
-            </button>
-          )}
+          <button onClick={() => {
+            signIn('google', { callbackUrl: '/home' })
+          }}>
+            <Image
+              src='/icons/google.png'
+              alt='Google'
+              height={24}
+              width={24}
+            />
+            <span>Continue with Google</span>
+          </button>
+          <button>
+            <Image
+              src='/icons/facebook.png'
+              alt='Google'
+              height={24}
+              width={16}
+            />
+            <span>Continue with facebook</span>
+          </button>
         </div>
         <hr className={styles.hr} />
+        <form onSubmit={handleSubmit} className={styles.formSection}>
         <div className={styles.field}>
           <Image src='/icons/email.png' alt='email' width={22} height={16} />
           <span></span>
@@ -278,8 +265,9 @@ const Form = () => {
             </p>
           </div>
         )}
+        </form>
       </div>
-    </form>
+    </div>
   );
 };
 export default Form;

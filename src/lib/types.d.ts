@@ -18,6 +18,7 @@ interface UserPlus extends User {
   notifications: string[];
   groups: any;
   isActive: boolean;
+  provider?: 'google' | 'facebook';
 }
 
 interface Author {
