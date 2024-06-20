@@ -61,11 +61,12 @@ const option: NextAuthConfig = {
         if (email) {
           const { users } = await Setup();
           let existingUser = await users?.findOne({ email });
+          const random = v4().split('-')[0]
   
           if (!existingUser) {
             const [firstName, ...lastNameParts] = name?.split(' ') || [];
             const lastName = lastNameParts.join(' ');
-            const username = `user${v4()}`;
+            const username = `user${random}`;
   
             const newUser = await users?.insertOne({
               username,
