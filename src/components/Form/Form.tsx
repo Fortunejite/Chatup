@@ -103,8 +103,18 @@ const Form = () => {
       )}
       <div className={styles.fields}>
         <div className={styles.oauths}>
-          <button onClick={() => {
-            signIn('google', { callbackUrl: '/home' })
+          <button disabled={isLoading} onClick={async () => {
+            setIsLoading(true)
+            const res = await signIn('google')
+            if (res?.error) {
+              console.log(res);
+              
+              toast('Error occured');
+              setIsLoading(false);
+              return;
+            }
+            
+            router.push('/home')
           }}>
             <Image
               src='/icons/google.png'
@@ -114,7 +124,19 @@ const Form = () => {
             />
             <span>Continue with Google</span>
           </button>
-          <button>
+          <button disabled={isLoading} onClick={async () => {
+            setIsLoading(true)
+            const res = await signIn('facebook')
+            if (res?.error) {
+              console.log(res);
+              
+              toast('Error occured');
+              setIsLoading(false);
+              return;
+            }
+            
+            router.push('/home')
+          }}>
             <Image
               src='/icons/facebook.png'
               alt='Google'

@@ -1,4 +1,5 @@
 import Google from 'next-auth/providers/google';
+import Facebook from 'next-auth/providers/facebook';
 import Credentials from 'next-auth/providers/credentials';
 import NextAuth from 'next-auth';
 import type { NextAuthConfig } from 'next-auth';
@@ -24,6 +25,7 @@ const option: NextAuthConfig = {
   },
   providers: [
     Google,
+    Facebook,
     Credentials({
       credentials: {},
       authorize: async (credentials) => {
@@ -53,7 +55,7 @@ const option: NextAuthConfig = {
   ],
   callbacks: {
     async jwt({ token, user, account }) {
-      if (account?.provider === 'google') {
+      if (account?.provider === 'google' || account?.provider === 'facebook') {
         const { email, name, image } = user || {};
   
         if (email) {
@@ -70,7 +72,7 @@ const option: NextAuthConfig = {
               email,
               firstName,
               lastName,
-              provider: 'google',
+              provider: account?.provider,
               followers: [],
               following: [],
               friends: [],
@@ -100,7 +102,8 @@ const option: NextAuthConfig = {
             token.lastName = existingUser?.lastName;
           }
         }
-      } else {
+      }
+       else {
         // Fallback for other providers or if account is not defined
         if (user) {
           token.id = user?._id?.toString();
