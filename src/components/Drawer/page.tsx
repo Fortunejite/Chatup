@@ -27,7 +27,7 @@ const links: link[] = [
   {
     icon: '/icons/status-up.png',
     name: 'User Analytics',
-    href: '/analytics',
+    href: '/home/analytics',
   },
 ];
 
@@ -35,11 +35,6 @@ const settings: link[] = [
   {
     icon: '/icons/setting-2.png',
     name: 'Settings',
-    href: '/settings',
-  },
-  {
-    icon: '/icons/setting-2.png',
-    name: 'Security data',
     href: '/settings',
   },
 ];

@@ -1,0 +1,59 @@
+.main {
+  flex: 2;
+  width: 100%;
+  margin: 20px 24px;
+  padding: 24px;
+  background-color: var(--primary);
+}
+
+.main h2{
+  color: var(--heading);
+  margin-bottom: 24px;
+}
+
+.notification {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 16px 0;
+  gap: 8px;
+  width: 100%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.notification:first-child{
+  border-top: none;
+  border-bottom: none
+}
+
+.notification:last-child{
+  border-bottom: none
+}
+
+.notification span {
+  font-size: 12px;
+  color: #4361EE;
+}
+
+
+.notification button {
+  border: none;
+  border-radius: 15px;
+  background-color: #A9DEF9;
+  padding: 8px 16px;
+  margin: 0 auto;
+}
+
+.details {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: start;
+}
+
+@media screen and (max-width: 500px) {
+  .main {
+    margin: 0;
+    display: flex;
+    flex-flow: column wrap;
+  }
+}

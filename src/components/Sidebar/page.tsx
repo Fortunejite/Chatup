@@ -24,7 +24,7 @@ const links: link[] = [
   {
     icon: '/icons/status-up.png',
     name: 'User Analytics',
-    href: '/analytics',
+    href: '/home/analytics',
   },
 ];
 

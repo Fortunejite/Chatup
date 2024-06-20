@@ -9,6 +9,15 @@ interface User {
   avatar?: string;
 }
 
+interface Notification {
+  msg: string;
+  type: 'followed';
+  avatar?: string;
+  date: Date;
+  status: 'unread' | 'read';
+  userId: string;
+}
+
 interface UserPlus extends User {
   _id?: string;
   bio: string;
@@ -17,7 +26,7 @@ interface UserPlus extends User {
   pendingRequests: string[];
   following: string[],
   followers: string[]
-  notifications: string[];
+  notifications: Notification[];
   groups: any;
   isActive: boolean;
   provider?: 'google' | 'facebook';

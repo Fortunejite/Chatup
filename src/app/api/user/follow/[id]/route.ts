@@ -34,8 +34,9 @@ export async function PUT(
           notifications: {
             msg,
             type: 'followed',
-            avater: userSession.pic,
+            avatar: userSession.pic || '/icons/profile.png',
             date,
+            userId: userSessionId,
           },
         } as any,
       },
@@ -45,6 +46,20 @@ export async function PUT(
         _id: new ObjectId(userSessionId),
       },
       { $push: { following: id } as any },
+    );
+    const {following} = await userCollection?.findOne(
+      {
+        _id: new ObjectId(id),
+      }) as unknown as UserPlus
+    if (following.includes(userSessionId)) await userCollection?.updateOne(
+      {
+        _id: new ObjectId(id),
+      },
+      {
+        $push: {
+          friends: userSessionId,
+        } as any,
+      },
     );
     return NextResponse.json({}, { status: 201 });
   } catch (e) {

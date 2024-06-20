@@ -15,20 +15,20 @@ interface link {
 const links: link[] = [
   {
     id: 1,
-    url: '/messages',
+    url: '/home/messages',
     icon: '/icons/message.png',
     alt: 'Messages',
   },
   {
     id: 2,
-    url: '/notifications',
+    url: '/home/notifications',
     icon: '/icons/notifications.png',
     alt: 'Notifications',
   },
 
   {
     id: 3,
-    url: '/settings',
+    url: '/home/settings',
     icon: '/icons/setting-2.png',
     alt: 'Settings',
   },
