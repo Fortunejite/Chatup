@@ -6,9 +6,11 @@ interface User {
   username: string;
   pic: string;
   password?: string;
+  avatar?: string;
 }
 
 interface UserPlus extends User {
+  _id?: string;
   bio: string;
   friends: string[];
   friendRequest: string[];

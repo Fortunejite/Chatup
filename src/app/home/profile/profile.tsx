@@ -156,6 +156,7 @@ const Profile = ({ userSession, user }: Props) => {
           <div className={styles.username}>
             <span>@</span>
             <input
+            className={styles.usernameInput}
               type='text'
               value={username}
               onChange={(e) => setUsername(e.target.value.toLowerCase())}

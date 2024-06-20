@@ -1,7 +1,20 @@
 .container{
-  background-color: var(--bg);
+  background-color: var(--primary);
+  margin-top: 40px;
+  padding: 16px;
   max-width: 315px;
   flex: 1;
+}
+
+.container h2{
+  color: var(--heading);
+  margin-bottom: 16px;
+}
+
+.users {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 16px;
 }
 
 @media screen and (max-width: 500px) {

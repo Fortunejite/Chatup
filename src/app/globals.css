@@ -22,3 +22,8 @@ body {
   white-space: nowrap;
   overflow: hidden;
 }
+
+a {
+  text-decoration: none;
+  color: var(--text)
+}

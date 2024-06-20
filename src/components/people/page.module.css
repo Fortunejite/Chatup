@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.container p {
+  color: #4361EE;
+  font-weight: 500;
+}
+
+.container h3 {
+  max-width: 10rem;
+}
+.container a {
+  position: relative;
+  width: 70px;
+  height: 70px;
+}
+
+.container img {
+  position: absolute;
+}
+.container button {
+  border: none;
+  border-radius: 15px;
+  background-color: #A9DEF9;
+  padding: 8px 16px;
+  margin: 0 auto;
+}

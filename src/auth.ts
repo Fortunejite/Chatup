@@ -101,7 +101,7 @@ const option: NextAuthConfig = {
             token.firstName = existingUser?.firstName;
             token.lastName = existingUser?.lastName;
           }
-        }
+        } else return null
       }
        else {
         // Fallback for other providers or if account is not defined
