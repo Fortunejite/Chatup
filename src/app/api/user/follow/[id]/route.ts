@@ -12,7 +12,6 @@ export async function PUT(
   
   const { users: userCollection } = await Setup();
   const session = await auth();
-  console.log(session);
   const userSession = session?.user as User;
   const msg = `${userSession?.username} started following you.`;
   const date = new Date();

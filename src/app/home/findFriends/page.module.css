@@ -1,0 +1,28 @@
+
+.main {
+  flex: 2;
+  width: 100%;
+  margin: 20px 24px;
+  padding: 24px;
+  background-color: var(--primary);
+}
+
+.main h2{
+  color: var(--heading);
+  margin-bottom: 24px;
+}
+
+.users{
+  display: flex;
+  gap: 24px;
+  flex-flow: column wrap;
+  width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .main {
+    margin: 0;
+    display: flex;
+    flex-flow: column wrap;
+  }
+}

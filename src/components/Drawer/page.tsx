@@ -22,7 +22,7 @@ const links: link[] = [
   {
     icon: '/icons/people.png',
     name: 'Find friends',
-    href: '/friends',
+    href: '/home/findFriends',
   },
   {
     icon: '/icons/status-up.png',

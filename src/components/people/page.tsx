@@ -14,6 +14,7 @@ type User = {
   firstName: string;
   followers: string[];
   isFollowing: boolean;
+  isLarge?: boolean; // Determine if it is a minimize version or not 
 };
 
 interface Props {
