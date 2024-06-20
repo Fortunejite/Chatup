@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { toast } from "react-toastify";
-import styles from './page.module.css'
 
 export function Button ({id} : {id: string | undefined}) {
   const [followed, setfollowed] = useState(false)
@@ -18,5 +17,6 @@ export function Button ({id} : {id: string | undefined}) {
     setIsLoading(false);
   };
 
-  return {followed: !followed ? <button disabled={isLoading} onClick={handleFollow}>Follow back</button> : <p>Following</p>}
+  if (!followed) return <button disabled={isLoading} onClick={handleFollow}>Follow back</button>
+  return <p>Following</p>
 }

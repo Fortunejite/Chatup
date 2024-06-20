@@ -49,7 +49,7 @@ const option: NextAuthConfig = {
           pic: user.avatar || '/icons/profile.png',
           firstName: user.firstName,
           lastName: user.lastName,
-        };
+        } as any;
       },
     }),
   ],
@@ -63,7 +63,7 @@ const option: NextAuthConfig = {
           let existingUser = await users?.findOne({ email });
   
           if (!existingUser) {
-            const [firstName, ...lastNameParts] = name?.split(' ');
+            const [firstName, ...lastNameParts] = name?.split(' ') || [];
             const lastName = lastNameParts.join(' ');
             const username = `user${v4()}`;
   
@@ -106,8 +106,8 @@ const option: NextAuthConfig = {
        else {
         // Fallback for other providers or if account is not defined
         if (user) {
-          token.id = user?._id?.toString();
-          token.email = user?.email;
+          token.id = user?._id?.toString() as string;
+          token.email = user?.email || "";
           token.username = user?.username;
           token.pic = user?.pic || '/icons/profile.png';
           token.firstName = user?.firstName;
@@ -119,8 +119,8 @@ const option: NextAuthConfig = {
     },
     async session({ session, token }) {
       if (session?.user) {
-        session.user.id = token.id;
-        session.user.email = token.email;
+        session.user.id = token.id ;
+        session.user.email = token.email || '';
         session.user.username = token.username;
         session.user.pic = token.pic;
         session.user.firstName = token.firstName;

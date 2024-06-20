@@ -33,6 +33,7 @@ interface UserPlus extends User {
 }
 
 interface Author {
+  _id?: string;
   username: string;
   avatar: string;
   lastName: string;

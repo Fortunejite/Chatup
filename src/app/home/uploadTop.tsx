@@ -14,14 +14,20 @@ const UploadTop = () => {
   const addImage = (e: ChangeEvent<HTMLInputElement>) => {
     if (images.length + videos.length >= 4)
       return toast('Maximum of 4 media to upload');
-    if (e.target.files) {
-      setImages((prev) => [...prev, e.target.files[0]]);
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (file) {
+        setImages((prev) => [...prev, file]);
+      }
     }
   };
   const addVideo = (e: ChangeEvent<HTMLInputElement>) => {
     if (images.length + videos.length >= 5) return;
     if (e.target.files) {
-      setVideos((prev) => [...prev, e.target.files[0]]);
+      const file = e.target.files[0];
+      if (file) {
+        setVideos((prev) => [...prev, file]);
+      }
     }
   };
 

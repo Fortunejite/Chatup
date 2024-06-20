@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
   const authors = await Promise.all(obj)
   const res = post.map((data) => {
     authors.map((author) => {
-      if (data.userId == author._id.toString()) {
+      if (data.userId == author._id?.toString()) {
         const { username, avatar, lastName, firstName } = author
         data.author = { username, avatar, lastName, firstName }
       }
